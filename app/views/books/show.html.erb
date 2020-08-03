@@ -28,10 +28,26 @@
 						<td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
 						<td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
 						<% end %>
-						
 					</tr>
 			</table>
+					<%= form_for [@book, @comment] do |f| %>
+						<div class="row">
+							<div class="col-xs-12">
+								<%= f.text_area :comment, rows:'5', class: "form-control" %>
+							</div>
+							<%= f.submit "送信", class: "btn btn-xs btn-base-1 mt-20 pull-right" %>
+					<% end %>
 
+					<ol>
+						<% @comments.each do |book_comment| %>
+							<%= book_comment.comment %>
+                      <% if book_comment.user == current_user %>
+                        <div>
+                          <%= link_to "削除", book_book_comment_path(:book_id), method: :delete, class: "btn btn-danger pull-right" %>
+                        </div>
+                      <% end %>
+                      <% end %>
+					</ol>
 		</div>
 	</div>
 </div>
