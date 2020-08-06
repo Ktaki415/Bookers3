@@ -4,7 +4,7 @@
 			<h2>User info</h2>
 			<%= render 'users/profile', user: @user %>
 
-			<%= render 'relationships/follow', user: @user %>
+			<%= render 'relationships/followbutton', user: @user %>
 
 			<h2>New book</h2>
 			<%= render 'books/newform', book: @book %>
@@ -46,6 +46,7 @@
 								<% end %>
 							<% end %>
 						</td>
+
 						<td><%= link_to "コメント数: #{book.book_comments.count}", book_book_comments_path(book.id) %></td>
 					</tr>
 					<% end %>
